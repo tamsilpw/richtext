@@ -1,18 +1,66 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 /* Add typography plugin styles if needed */
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
+  font-weight: 400; */
+
+  font-family: "RedditSans", "sans-serif";
   font-weight: 400;
+  color: #333333;
+  font-size: 14px;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/*Reddit Sans*/
+/* @import 'https://static.pw.live/fonts/reddit/font.css'; */
+@font-face {
+  font-family: RedditSans;
+  src: url("https://static.pw.live/fonts/reddit/static/RedditSans-Regular.ttf");
+  font-weight: 200;
+}
+@font-face {
+  font-family: RedditSans;
+  src: url("https://static.pw.live/fonts/reddit/static/RedditSans-Regular.ttf");
+  font-weight: 300;
+}
+@font-face {
+  font-family: RedditSans;
+  src: url("https://static.pw.live/fonts/reddit/static/RedditSans-Regular.ttf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: RedditSans;
+  src: url("https://static.pw.live/fonts/reddit/static/RedditSans-SemiBold.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: RedditSans;
+  src: url("https://static.pw.live/fonts/reddit/static/RedditSans-SemiBold.ttf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: RedditSans;
+  src: url("https://static.pw.live/fonts/reddit/static/RedditSans-Bold.ttf");
+  font-weight: 700;
+}
+@font-face {
+  font-family: RedditSans;
+  src: url("https://static.pw.live/fonts/reddit/static/RedditSans-Bold.ttf");
+  font-weight: 800;
+}
+@font-face {
+  font-family: RedditSans;
+  src: url("https://static.pw.live/fonts/reddit/static/RedditSans-Bold.ttf");
+  font-weight: 900;
 }
 
 /* a {
