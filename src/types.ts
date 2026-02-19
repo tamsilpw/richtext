@@ -46,6 +46,15 @@ export interface Option{
     isSubTextLoading?: boolean
 }
 
+export type ClickType = 'BOOKMARK_CLICK' | 'THREE_DOTS_CLICK' | 'OPTION_CLICK' | 'VIDEO_SOLUTION_CLICK';
+
+export const ClickType = {
+  BOOKMARK_CLICK: 'BOOKMARK_CLICK' as ClickType,
+  THREE_DOTS_CLICK: 'THREE_DOTS_CLICK' as ClickType,
+  OPTION_CLICK: 'OPTION_CLICK' as ClickType,
+  VIDEO_SOLUTION_CLICK: 'VIDEO_SOLUTION_CLICK' as ClickType,
+};
+
 
 export const sampleQuestion: Question = {
     _id: '2lc67y07gwxvn9bi9w5j66gbu',

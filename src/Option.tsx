@@ -62,7 +62,7 @@ const QuestionOption = ({
       {(status === OptionStatus.MARKED || status === OptionStatus.UNMARKED) && (
         <div
           className={cn(
-            "h-[28px] w-[28px] border rounded-full flex items-center justify-center duration-200 transition-all",
+            "h-7 w-7 border rounded-full flex items-center justify-center duration-200 transition-all",
             {
               ["border-primary"]: status === OptionStatus.MARKED,
               ["border-[#E0E0E0]"]: status === OptionStatus.UNMARKED,
@@ -70,15 +70,15 @@ const QuestionOption = ({
           )}
         >
           {status === OptionStatus.MARKED && (
-            <div className="h-[18px] w-[18px] bg-primary rounded-full" />
+            <div className="h-4.5 w-4.5 bg-[#5a4bda] rounded-full" />
           )}
         </div>
       )}
       {status === OptionStatus.CORRECT && (
-        <CheckCircleIcon className="text-[#1B7938] h-[34px] w-[34px]" />
+        <CheckCircleIcon className="text-[#1B7938] h-8.5 w-8.5" />
       )}
       {status === OptionStatus.INCORRECT && (
-        <XCircleIcon className="text-[#BF2734] h-[34px] w-[34px]" />
+        <XCircleIcon className="text-[#BF2734] h-8.5 w-8.5" />
       )}
     </button>
   );
