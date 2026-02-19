@@ -1,6 +1,5 @@
 import {
   ClickType,
-  OptionStatus,
   type Question,
   sampleQuestion as mock,
 } from "./types";
