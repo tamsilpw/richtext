@@ -1,9 +1,11 @@
- export enum OptionStatus {
-  MARKED = 'MARKED',
-  UNMARKED = 'UNMARKED',
-  CORRECT = 'CORRECT',
-  INCORRECT = 'INCORRECT',
-}
+export type OptionStatus = 'MARKED' | 'UNMARKED' | 'CORRECT' | 'INCORRECT';
+
+export const OptionStatus = {
+  MARKED: 'MARKED' as OptionStatus,
+  UNMARKED: 'UNMARKED' as OptionStatus,
+  CORRECT: 'CORRECT' as OptionStatus,
+  INCORRECT: 'INCORRECT' as OptionStatus,
+};
 
 export interface QuestionMeta{
     text: string

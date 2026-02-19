@@ -1,4 +1,3 @@
-import React from "react";
 import { sampleQuestion } from "./types";
 import Option from "./Option";
 

@@ -1,4 +1,3 @@
-import React from "react";
 import cn from "clsx";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
 import { OptionStatus, type Option } from "./types";
@@ -22,6 +21,7 @@ const QuestionOption = ({
 }: Option & OptionProps) => {
   return (
     <button
+    key={_id}
       className={cn(
         "p-3 rounded-md  border flex flex-row items-center focus:outline-none duration-200 transition-all",
         {
