@@ -1,4 +1,4 @@
-import type { ClickType } from "../types";
+import type { ClickType } from "./types";
 
 export const isFromApp = () => {
     return true
