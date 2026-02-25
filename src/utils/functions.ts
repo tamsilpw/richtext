@@ -1,5 +1,26 @@
 import type { ClickType } from "./types";
 
+export const makeImagesClickableInHtml = (html: string): string => {
+  if (!html) {
+    return "";
+  }
+
+  if (typeof window === "undefined") {
+    return html;
+  }
+
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, "text/html");
+  const images = doc.querySelectorAll("img");
+
+  images.forEach((image) => {
+    image.setAttribute("data-img-click", "true");
+    image.style.cursor = "pointer";
+  });
+
+  return doc.body.innerHTML;
+};
+
 export const isFromApp = () => {
     return true
 //   return globalStorage.getItem('fromApp') === 'true';

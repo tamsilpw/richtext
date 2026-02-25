@@ -1,6 +1,6 @@
 import { ClickType, type Question } from "./types";
 import { BookmarkIcon, EllipsisVerticalIcon } from "@heroicons/react/16/solid";
-import { invokeAppMethod } from "./functions";
+import { invokeAppMethod, makeImagesClickableInHtml } from "./functions";
 import Option from "./Option";
 
 const TestEngineLayout = ({
@@ -8,6 +8,24 @@ const TestEngineLayout = ({
 }: {
   currentQuestion: Question;
 }) => {
+  const handleImageClick = (event: React.MouseEvent<HTMLElement>) => {
+    const target = event.target as HTMLElement | null;
+    const imageElement = target?.closest(
+      "img[data-img-click='true']",
+    ) as HTMLImageElement | null;
+
+    if (!imageElement) {
+      return;
+    }
+
+    const imageSource = imageElement.getAttribute("src") || "";
+    if (!imageSource) {
+      return;
+    }
+
+    invokeAppMethod(ClickType.IMG_CLICK, currentQuestion, imageSource);
+  };
+
   return (
     <div className="flex flex-col gap-3 p-3">
       <section className="flex flex-row gap-3 items-center">
@@ -50,7 +68,10 @@ const TestEngineLayout = ({
       </section>
       <span
         className="text-[16px]"
-        dangerouslySetInnerHTML={{ __html: currentQuestion?.text || "" }}
+        onClick={handleImageClick}
+        dangerouslySetInnerHTML={{
+          __html: makeImagesClickableInHtml(currentQuestion?.text || ""),
+        }}
       ></span>
       {currentQuestion &&
         currentQuestion?.options?.length > 0 &&
@@ -68,8 +89,11 @@ const TestEngineLayout = ({
           <div className="h-[0.5px] my-3 bg-[#CBCBCB]"></div>
           <span className="font-semibold text-lg">Solution</span>
           <span
+            onClick={handleImageClick}
             dangerouslySetInnerHTML={{
-              __html: currentQuestion?.solution || "",
+              __html: makeImagesClickableInHtml(
+                currentQuestion?.solution || "",
+              ),
             }}
           ></span>
           {currentQuestion?.videoSolution?.url && (
@@ -82,6 +106,19 @@ const TestEngineLayout = ({
               See video solution
             </button>
           )}
+          {currentQuestion?.references &&
+            currentQuestion?.references?.length > 0 && (
+              <>
+                <span className="font-semibold text-lg mt-4">References</span>
+                <div className="flex flex-col gap-1">
+                  {currentQuestion?.references?.map((reference, index) => (
+                    <span key={index} className="text-base">
+                      {reference}
+                    </span>
+                  ))}
+                </div>
+              </>
+            )}
         </>
       )}
     </div>
