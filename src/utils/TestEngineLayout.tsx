@@ -2,6 +2,7 @@ import { ClickType, type Question } from "./types";
 import { BookmarkIcon, EllipsisVerticalIcon } from "@heroicons/react/16/solid";
 import { invokeAppMethod, makeImagesClickableInHtml } from "./functions";
 import Option from "./Option";
+import { CheckIcon } from "@heroicons/react/24/solid";
 
 const TestEngineLayout = ({
   currentQuestion,
@@ -73,6 +74,26 @@ const TestEngineLayout = ({
           __html: makeImagesClickableInHtml(currentQuestion?.text || ""),
         }}
       ></span>
+      {currentQuestion?.isMarkForReviewEnabled && (
+        <button
+          type="button"
+          className="flex items-center gap-2 w-fit mx-auto my-2"
+          onClick={() => invokeAppMethod(ClickType.MARK_FOR_REVIEW_CLICK, currentQuestion)}
+        >
+          <span
+            className={`h-5 w-5 rounded border border-[#5a4bda] flex items-center justify-center ${
+              currentQuestion?.isMarkedForReview
+                ? "bg-[#5a4bda]"
+                : "bg-transparent"
+            }`}
+          >
+            {currentQuestion?.isMarkedForReview && (
+              <CheckIcon className="h-6 w-6 text-white" />
+            )}
+          </span>
+          <span className="text-[#1B2124]">Mark for Review</span>
+        </button>
+      )}
       {currentQuestion &&
         currentQuestion?.options?.length > 0 &&
         currentQuestion?.options.map((option) => (

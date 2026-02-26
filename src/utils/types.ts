@@ -33,6 +33,9 @@ export interface Question {
   isBookmark: boolean;
 
   isThreeDotsEnabled: boolean;
+
+  isMarkForReviewEnabled?: boolean;
+  isMarkedForReview?: boolean;
 }
 
 export interface Option {
@@ -51,7 +54,8 @@ export type ClickType =
   | "THREE_DOTS_CLICK"
   | "OPTION_CLICK"
   | "VIDEO_SOLUTION_CLICK"
-  | "IMG_CLICK";
+  | "IMG_CLICK"
+  | "MARK_FOR_REVIEW_CLICK";
 
 export const ClickType = {
   BOOKMARK_CLICK: "BOOKMARK_CLICK" as ClickType,
@@ -59,6 +63,7 @@ export const ClickType = {
   OPTION_CLICK: "OPTION_CLICK" as ClickType,
   VIDEO_SOLUTION_CLICK: "VIDEO_SOLUTION_CLICK" as ClickType,
   IMG_CLICK: "IMG_CLICK" as ClickType,
+  MARK_FOR_REVIEW_CLICK: "MARK_FOR_REVIEW_CLICK" as ClickType,
 };
 
 export const sampleQuestion: Question = {
@@ -121,4 +126,6 @@ export const sampleQuestion: Question = {
     "Gray's Anatomy the Anatomical Basis of Clinical Practice, 41st edition - 333",
     "Gray's Anatomy the Anatomical Basis of Clinical Practice, 41st edition - 333",
   ],
+  isMarkedForReview: false,
+  isMarkForReviewEnabled: true,
 };
