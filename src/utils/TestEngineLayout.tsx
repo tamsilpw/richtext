@@ -78,7 +78,9 @@ const TestEngineLayout = ({
         <button
           type="button"
           className="flex items-center gap-2 w-fit mx-auto my-2"
-          onClick={() => invokeAppMethod(ClickType.MARK_FOR_REVIEW_CLICK, currentQuestion)}
+          onClick={() =>
+            invokeAppMethod(ClickType.MARK_FOR_REVIEW_CLICK, currentQuestion)
+          }
         >
           <span
             className={`h-5 w-5 rounded border border-[#5a4bda] flex items-center justify-center ${
@@ -108,25 +110,30 @@ const TestEngineLayout = ({
       {currentQuestion?.isSolutionEnabled && (
         <>
           <div className="h-[0.5px] my-3 bg-[#CBCBCB]"></div>
-          <span className="font-semibold text-lg">Solution</span>
-          <span
-            onClick={handleImageClick}
-            dangerouslySetInnerHTML={{
-              __html: makeImagesClickableInHtml(
-                currentQuestion?.solution || "",
-              ),
-            }}
-          ></span>
-          {currentQuestion?.videoSolution?.url && (
-            <button
-              className="border border-[#5a4bda] shadow-none outline-none w-fit px-8 py-2 mx-auto rounded-lg text-[#5a4bda] text-base font-semibold"
-              onClick={() =>
-                invokeAppMethod(ClickType.VIDEO_SOLUTION_CLICK, currentQuestion)
-              }
-            >
-              See video solution
-            </button>
-          )}
+          <section className="bg-[#F1FFEB] flex flex-col gap-3 p-4 rounded-xl">
+            <span className="font-semibold text-lg">Solution</span>
+            <span
+              onClick={handleImageClick}
+              dangerouslySetInnerHTML={{
+                __html: makeImagesClickableInHtml(
+                  currentQuestion?.solution || "",
+                ),
+              }}
+            ></span>
+            {currentQuestion?.videoSolution?.url && (
+              <button
+                className="border border-[#5a4bda] shadow-none outline-none w-fit px-8 py-2 mx-auto rounded-lg text-[#5a4bda] text-base font-semibold bg-white hover:bg-gray-100"
+                onClick={() =>
+                  invokeAppMethod(
+                    ClickType.VIDEO_SOLUTION_CLICK,
+                    currentQuestion,
+                  )
+                }
+              >
+                See video solution
+              </button>
+            )}{" "}
+          </section>
           {currentQuestion?.references &&
             currentQuestion?.references?.length > 0 && (
               <>
