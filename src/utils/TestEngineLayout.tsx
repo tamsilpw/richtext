@@ -36,7 +36,7 @@ const TestEngineLayout = ({
           </div>
         )}
         <div className="flex flex-col pl-3 border-l border-[#CBCBCB] flex-1">
-          <span className="font-semibold text-base">
+          <span className="font-semibold text-base line-clamp-2">
             {currentQuestion?.meta?.text}
           </span>
           <span className="font-normal text-sm text-[#757575]">
