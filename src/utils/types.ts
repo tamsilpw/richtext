@@ -23,6 +23,7 @@ export interface Question {
   text: string;
   options: Option[];
   meta: QuestionMeta;
+  hideHeader?: boolean;
 
   isSolutionEnabled: boolean;
   solution: string;
@@ -69,6 +70,7 @@ export const ClickType = {
 export const sampleQuestion: Question = {
   _id: "2lc67y07gwxvn9bi9w5j66gbu",
   serial: "1",
+  hideHeader: false,
   text: '<p style="text-align: left;">A 33-year-old male patient came in after suffering a fall from the bike. He was riding on the pillion and fell to his left and his elbow had an impact on the ground. He complains of tolerable pain with no associated swelling or reduction of ROM. You order an X-ray to rule out any chance of fracture. The X-ray turned out to be a normal study (as seen below). You ask the intern what the pointed structure is and she, being a studious person, answers:</p><p style="text-align: justify;"><img style="display: block; margin-left: auto; margin-right: auto;" title="d8db80ec-b9a1-496c-b69c-c8986d3fa042.jpg" src="https://static.pw.live/5eb393ee95fab7468a79d189/QBG/83d5a708-c0fd-465c-9b72-a72ad3380fd3.jpg" alt="" width="242" height="266" /></p>',
   options: [
     {

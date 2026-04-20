@@ -29,44 +29,46 @@ const TestEngineLayout = ({
 
   return (
     <div className="flex flex-col gap-3 p-3">
-      <section className="flex flex-row gap-3 items-center">
-        {currentQuestion?.serial && (
-          <div className="text-sm bg-[#414347] text-[#ffff] h-7 w-7 rounded-full flex items-center justify-center">
-            {currentQuestion?.serial}
+      {!currentQuestion?.hideHeader && (
+        <section className="flex flex-row gap-3 items-center">
+          {currentQuestion?.serial && (
+            <div className="text-sm bg-[#414347] text-[#ffff] h-7 w-7 rounded-full flex items-center justify-center">
+              {currentQuestion?.serial}
+            </div>
+          )}
+          <div className="flex flex-col pl-3 border-l border-[#CBCBCB] flex-1">
+            <span className="font-semibold text-base line-clamp-2">
+              {currentQuestion?.meta?.text}
+            </span>
+            <span className="font-normal text-sm text-[#757575]">
+              {currentQuestion?.meta?.subText}
+            </span>
           </div>
-        )}
-        <div className="flex flex-col pl-3 border-l border-[#CBCBCB] flex-1">
-          <span className="font-semibold text-base line-clamp-2">
-            {currentQuestion?.meta?.text}
-          </span>
-          <span className="font-normal text-sm text-[#757575]">
-            {currentQuestion?.meta?.subText}
-          </span>
-        </div>
-        <div className="flex gap-3 items-center">
-          {currentQuestion?.isBookmarkEnabled && (
-            <BookmarkIcon
-              className="h-6 w-6 cursor-pointer"
-              role="button"
-              fill={currentQuestion?.isBookmark ? "#7363FC" : "transparent"}
-              stroke={currentQuestion?.isBookmark ? "#7363FC" : "#1B2124"}
-              onClick={() =>
-                invokeAppMethod(ClickType.BOOKMARK_CLICK, currentQuestion)
-              }
-            />
-          )}
-          {currentQuestion?.isThreeDotsEnabled && (
-            <EllipsisVerticalIcon
-              height={24}
-              width={24}
-              className="cursor-pointer select-none outline-none"
-              onClick={() =>
-                invokeAppMethod(ClickType.THREE_DOTS_CLICK, currentQuestion)
-              }
-            />
-          )}
-        </div>
-      </section>
+          <div className="flex gap-3 items-center">
+            {currentQuestion?.isBookmarkEnabled && (
+              <BookmarkIcon
+                className="h-6 w-6 cursor-pointer"
+                role="button"
+                fill={currentQuestion?.isBookmark ? "#7363FC" : "transparent"}
+                stroke={currentQuestion?.isBookmark ? "#7363FC" : "#1B2124"}
+                onClick={() =>
+                  invokeAppMethod(ClickType.BOOKMARK_CLICK, currentQuestion)
+                }
+              />
+            )}
+            {currentQuestion?.isThreeDotsEnabled && (
+              <EllipsisVerticalIcon
+                height={24}
+                width={24}
+                className="cursor-pointer select-none outline-none"
+                onClick={() =>
+                  invokeAppMethod(ClickType.THREE_DOTS_CLICK, currentQuestion)
+                }
+              />
+            )}
+          </div>
+        </section>
+      )}
       <span
         className="text-[16px]"
         onClick={handleImageClick}
