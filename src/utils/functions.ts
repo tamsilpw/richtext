@@ -16,6 +16,9 @@ export const makeImagesClickableInHtml = (html: string): string => {
   images.forEach((image) => {
     image.setAttribute("data-img-click", "true");
     image.style.cursor = "pointer";
+    image.style.setProperty("margin-left", "auto", "important");
+    image.style.setProperty("margin-right", "auto", "important");
+    image.style.setProperty("display", "block", "important");
   });
 
   return doc.body.innerHTML;
