@@ -3,12 +3,17 @@ import { BookmarkIcon, EllipsisVerticalIcon } from "@heroicons/react/16/solid";
 import { invokeAppMethod, makeImagesClickableInHtml } from "./functions";
 import Option from "./Option";
 import { CheckIcon } from "@heroicons/react/24/solid";
+import TestEngineSkeleton from "./TestEngineSkeleton";
 
 const TestEngineLayout = ({
   currentQuestion,
 }: {
   currentQuestion: Question;
 }) => {
+  if (!currentQuestion?._id) {
+    return <TestEngineSkeleton />;
+  }
+
   const handleImageClick = (event: React.MouseEvent<HTMLElement>) => {
     const target = event.target as HTMLElement | null;
     const imageElement = target?.closest(

@@ -6,7 +6,7 @@ const TestEngine = () => {
   const [searchParams] = useSearchParams();
   const question = encodeURIComponent(JSON.stringify(mock));
 
-  const rawTextParam = (searchParams.get("question") as string) || question;
+  const rawTextParam = (searchParams.get("question") as string)
   const decoded = rawTextParam ? decodeURIComponent(rawTextParam) : "{}";
   const currentQuestion = JSON.parse(decoded) as Question;
 
