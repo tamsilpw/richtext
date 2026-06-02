@@ -7,6 +7,11 @@ export const OptionStatus = {
   INCORRECT: "INCORRECT" as OptionStatus,
 };
 
+export enum QuestionStatus {
+  CORRECT = "CORRECT",
+  INCORRECT = "INCORRECT",
+  SKIPPED = "SKIPPED",
+}
 export interface QuestionMeta {
   text: string;
   subText: string;
@@ -37,6 +42,10 @@ export interface Question {
 
   isMarkForReviewEnabled?: boolean;
   isMarkedForReview?: boolean;
+
+  questionStatus?: QuestionStatus;
+  isSolutionStatusCardEnabled?: boolean;
+  timeTaken?: string;
 }
 
 export interface Option {
@@ -49,6 +58,26 @@ export interface Option {
   disabled: boolean;
   isSubTextLoading?: boolean;
 }
+
+export interface QuestionStatusProps {
+  status: QuestionStatus
+  time: string
+}
+
+export const questionStatusMap: Record<QuestionStatus, any> = {
+  [QuestionStatus.CORRECT]: {
+    text: "Correct",
+    colorClassName: "text-[#1B7938]"
+  },
+  [QuestionStatus.INCORRECT]: {
+    text: "Incorrect",
+    colorClassName: "text-[#BF2727]"
+  },
+  [QuestionStatus.SKIPPED]: {
+    text: "Skipped",
+    colorClassName: "text-[#3D3D3D]"
+  },
+};
 
 export type ClickType =
   | "BOOKMARK_CLICK"
@@ -130,4 +159,7 @@ export const sampleQuestion: Question = {
   ],
   isMarkedForReview: false,
   isMarkForReviewEnabled: true,
+  isSolutionStatusCardEnabled: true,
+  questionStatus: QuestionStatus.INCORRECT,
+  timeTaken: "2s",
 };

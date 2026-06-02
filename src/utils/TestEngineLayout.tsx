@@ -1,9 +1,15 @@
-import { ClickType, type Question } from "./types";
+import {
+  ClickType,
+  questionStatusMap,
+  type Question,
+  QuestionStatus,
+} from "./types";
 import { BookmarkIcon, EllipsisVerticalIcon } from "@heroicons/react/16/solid";
 import { invokeAppMethod, makeImagesClickableInHtml } from "./functions";
 import Option from "./Option";
 import { CheckIcon } from "@heroicons/react/24/solid";
 import TestEngineSkeleton from "./TestEngineSkeleton";
+import clsx from "clsx";
 
 const TestEngineLayout = ({
   currentQuestion,
@@ -81,6 +87,38 @@ const TestEngineLayout = ({
           __html: makeImagesClickableInHtml(currentQuestion?.text || ""),
         }}
       ></span>
+      {currentQuestion?.isSolutionStatusCardEnabled && (
+        <div className="bg-white w-full sm:max-w-[467px] p-3 rounded-lg shadow-lg mx-auto my-8">
+          <table className="align-center border-collapse w-full">
+            <tbody className="flex flex-row justify-between">
+              <tr
+                className={
+                  "flex flex-row justify-between p-[10px] w-[49%] border rounded-lg border-gray-200"
+                }
+              >
+                <td>Status</td>
+                <td
+                  className={clsx(
+                    questionStatusMap[
+                      currentQuestion?.questionStatus as QuestionStatus
+                    ]?.colorClassName,
+                  )}
+                >
+                  {
+                    questionStatusMap[
+                      currentQuestion?.questionStatus as QuestionStatus
+                    ]?.text
+                  }
+                </td>
+              </tr>
+              <tr className="flex flex-row justify-between p-[10px] w-[49%] border rounded-lg border-gray-200">
+                <td>Time</td>
+                <td>{currentQuestion?.timeTaken}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )}
       {currentQuestion?.isMarkForReviewEnabled && (
         <button
           type="button"
@@ -114,6 +152,7 @@ const TestEngineLayout = ({
             }
           />
         ))}
+
       {currentQuestion?.isSolutionEnabled && (
         <>
           <div className="h-[0.5px] my-3 bg-[#CBCBCB]"></div>
