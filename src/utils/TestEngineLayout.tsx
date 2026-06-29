@@ -81,7 +81,7 @@ const TestEngineLayout = ({
         </section>
       )}
       <span
-        className="text-[16px]"
+        className="text-[16px] prose prose-li:marker:text-black"
         onClick={handleImageClick}
         dangerouslySetInnerHTML={{
           __html: makeImagesClickableInHtml(currentQuestion?.text || ""),
@@ -159,7 +159,7 @@ const TestEngineLayout = ({
           <section className="bg-[#F1FFEB] flex flex-col gap-3 p-4 rounded-xl">
             <span className="font-semibold text-lg">Solution</span>
             <span
-              className="text-[16px]"
+              className="text-[16px] prose prose-li:marker:text-black"
               onClick={handleImageClick}
               dangerouslySetInnerHTML={{
                 __html: makeImagesClickableInHtml(
