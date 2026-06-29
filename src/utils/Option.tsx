@@ -39,7 +39,7 @@ const QuestionOption = ({
       </div>
 
       <div className="flex flex-col gap-0.5 text-start flex-1">
-        <span  className="text-[16px]" dangerouslySetInnerHTML={{ __html: text }}></span>
+        <span  className="text-[16px] prose prose-li:marker:text-black" dangerouslySetInnerHTML={{ __html: text }}></span>
         {showSubText && (
           <>
             {isSubTextLoading ? (
