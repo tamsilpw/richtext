@@ -10,6 +10,7 @@ import Option from "./Option";
 import { CheckIcon } from "@heroicons/react/24/solid";
 import TestEngineSkeleton from "./TestEngineSkeleton";
 import clsx from "clsx";
+import VideoPlayerComponentWrapper from "./VideoPlayerIframe";
 
 const TestEngineLayout = ({
   currentQuestion,
@@ -87,6 +88,12 @@ const TestEngineLayout = ({
           __html: makeImagesClickableInHtml(currentQuestion?.text || ""),
         }}
       ></span>
+
+      {currentQuestion?.videoQuestion?.url &&
+        currentQuestion?.videoQuestion?.type && (
+          <VideoPlayerComponentWrapper {...currentQuestion?.videoQuestion} />
+        )}
+
       {currentQuestion?.isSolutionStatusCardEnabled && (
         <div className="bg-white w-full sm:max-w-[467px] p-3 rounded-lg shadow-lg mx-auto my-8">
           <table className="align-center border-collapse w-full">

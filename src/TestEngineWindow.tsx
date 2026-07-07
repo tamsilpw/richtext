@@ -1,5 +1,5 @@
-import React from "react";
-import type { Question } from "./utils/types";
+import React, { useEffect } from "react";
+import { sampleQuestion, type Question } from "./utils/types";
 import TestEngineLayout from "./utils/TestEngineLayout";
 
 declare global {
@@ -16,6 +16,10 @@ const TestEngineWindow = () => {
   window.updateQuestion = function (question: Question) {
     setCurrentQuestion(question);
   };
+
+  // useEffect(()=>{
+  //   setCurrentQuestion(sampleQuestion)
+  // },[])
 
   return (
     <TestEngineLayout currentQuestion={currentQuestion || ({} as Question)} />
