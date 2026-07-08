@@ -6,6 +6,7 @@ import TestEngineSkeleton from "./utils/TestEngineSkeleton";
 const Authenticate = ({ children }: { children: React.ReactNode }) => {
   const [searchParams] = useSearchParams();
   const [isInitialized, setIsInitialized] = useState(false);
+  const [enableWithoutToken, setEnableWithoutToken] = useState(false);
 
   const handleParams = async () => {
     const token = searchParams.get("token") || searchParams.get("TOKEN");
@@ -18,6 +19,7 @@ const Authenticate = ({ children }: { children: React.ReactNode }) => {
       console.log("initialized successfully");
     } else {
       webSDK.logout();
+      setEnableWithoutToken(true);
       console.log("logout successfully");
     }
   };
@@ -28,6 +30,7 @@ const Authenticate = ({ children }: { children: React.ReactNode }) => {
     }
   }, [searchParams]);
 
+  if (enableWithoutToken) return children;
   if (!isInitialized) return <TestEngineSkeleton />;
   return children;
 };
