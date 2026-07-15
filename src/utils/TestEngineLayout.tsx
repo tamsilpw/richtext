@@ -11,6 +11,7 @@ import { CheckIcon } from "@heroicons/react/24/solid";
 import TestEngineSkeleton from "./TestEngineSkeleton";
 import clsx from "clsx";
 import VideoPlayerComponentWrapper from "./VideoPlayerIframe";
+import { useSearchParams } from "react-router-dom";
 
 const TestEngineLayout = ({
   currentQuestion,
@@ -20,7 +21,9 @@ const TestEngineLayout = ({
   if (!currentQuestion?._id) {
     return <TestEngineSkeleton />;
   }
-
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get("token") || searchParams.get("TOKEN");
+  const randomId = searchParams.get("randomId") || searchParams.get("random_id");
   const handleImageClick = (event: React.MouseEvent<HTMLElement>) => {
     const target = event.target as HTMLElement | null;
     const imageElement = target?.closest(
@@ -91,7 +94,7 @@ const TestEngineLayout = ({
 
       {currentQuestion?.videoQuestion?.url &&
         currentQuestion?.videoQuestion?.type && (
-          <VideoPlayerComponentWrapper {...currentQuestion?.videoQuestion} />
+          <VideoPlayerComponentWrapper {...currentQuestion?.videoQuestion} token={token || ""} randomId={randomId || ""} />
         )}
 
       {currentQuestion?.isSolutionStatusCardEnabled && (
