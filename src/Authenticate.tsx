@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import webSDK from "./sdk/web.sdk";
+// import webSDK from "./sdk/web.sdk";
 import TestEngineSkeleton from "./utils/TestEngineSkeleton";
 
 const Authenticate = ({ children }: { children: React.ReactNode }) => {
@@ -14,11 +14,11 @@ const Authenticate = ({ children }: { children: React.ReactNode }) => {
       searchParams.get("randomId") || searchParams.get("random_id");
 
     if (!!token && !!randomId) {
-      await webSDK.exchangeToken(token, randomId);
+      // await webSDK.exchangeToken(token, randomId);
       setIsInitialized(true);
       console.log("initialized successfully");
     } else {
-      webSDK.logout();
+      // webSDK.logout();
       setEnableWithoutToken(true);
       console.log("logout successfully");
     }
