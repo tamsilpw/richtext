@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import webSDK from "./sdk/web.sdk";
 import TestEngineSkeleton from "./utils/TestEngineSkeleton";
+import { invokeAppMethod } from "./utils/functions";
+import { ClickType } from "./utils/types";
 
 const Authenticate = ({ children }: { children: React.ReactNode }) => {
   const [searchParams] = useSearchParams();
@@ -19,7 +21,12 @@ const Authenticate = ({ children }: { children: React.ReactNode }) => {
         randomId: randomId as string,
         token: token as string,
       };
-      setIsInitialized(true);
+      const isTokenValid = await webSDK.verifyToken();
+      if (isTokenValid) {
+        setIsInitialized(true);
+      } else {
+        invokeAppMethod(ClickType.INVALID_TOKEN);
+      }
       console.log("initialized successfully");
     } else {
       // webSDK.logout();
