@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-// import webSDK from "./sdk/web.sdk";
+import webSDK from "./sdk/web.sdk";
 import TestEngineSkeleton from "./utils/TestEngineSkeleton";
 
 const Authenticate = ({ children }: { children: React.ReactNode }) => {
@@ -15,6 +15,10 @@ const Authenticate = ({ children }: { children: React.ReactNode }) => {
 
     if (!!token && !!randomId) {
       // await webSDK.exchangeToken(token, randomId);
+      webSDK.setTokenContext = {
+        randomId: randomId as string,
+        token: token as string,
+      };
       setIsInitialized(true);
       console.log("initialized successfully");
     } else {
