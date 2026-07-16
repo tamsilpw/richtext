@@ -1,3 +1,4 @@
+import { useSearchParams } from 'react-router-dom'
 import webSDK from '../sdk/web.sdk'
 
 interface VideoPlayerProps {
@@ -12,11 +13,14 @@ interface VideoPlayerProps {
 
 const VideoPlayerComponentWrapper = (props: VideoPlayerProps) => {
     const { type, url, parentId, secondaryParentId, childId, secondaryChildId, videoType } = props
-
+    const [searchParams] = useSearchParams();
+    const token = searchParams.get("token") || searchParams.get("TOKEN");
+    const randomId =
+      searchParams.get("randomId") || searchParams.get("random_id");
     return (
         <div className={'h-full max-h-[400px] max-w-[600px] mx-auto w-full aspect-video'}>
             <iframe
-                src={`${import.meta.env.VITE_VIDEO_PLAYER_URL}?type=${type}&src=${url}&parentId=${parentId}&secondaryParentId=${secondaryParentId}&childId=${childId}&secondaryChildId=${secondaryChildId}&back_button=${false}&three_dots=${false}&vType=${videoType}&came_from=CURIOUS_JUNIOR&is_poll_enabled=false&token=${webSDK?.accessToken}&random_id=${webSDK?.randomId}&isFromCjr=true`}
+                src={`${import.meta.env.VITE_VIDEO_PLAYER_URL}?type=${type}&src=${url}&parentId=${parentId}&secondaryParentId=${secondaryParentId}&childId=${childId}&secondaryChildId=${secondaryChildId}&back_button=${false}&three_dots=${false}&vType=${videoType}&came_from=CURIOUS_JUNIOR&is_poll_enabled=false&token=${token || webSDK?.accessToken}&random_id=${randomId || webSDK?.randomId}&isFromCjr=true`}
                 frameBorder={'0'}
                 allow="accelerometer; autoplay;fullscreen; encrypted-media; gyroscope; picture-in picture"
                 style={{ width: '100%', height: '100%', overflow: 'hidden' }}
