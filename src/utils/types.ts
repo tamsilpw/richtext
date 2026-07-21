@@ -20,11 +20,11 @@ export interface QuestionMeta {
 export interface VideoSolution {
   url: string;
   type: string;
-  parentId?: string
-  secondaryParentId?: string
-  childId?: string
-  secondaryChildId?: string
-  videoType?: string
+  parentId?: string;
+  secondaryParentId?: string;
+  childId?: string;
+  secondaryChildId?: string;
+  videoType?: string;
 }
 
 export interface Question {
@@ -34,7 +34,7 @@ export interface Question {
   options: Option[];
   meta: QuestionMeta;
   hideHeader?: boolean;
-  videoQuestion?: VideoSolution
+  videoQuestion?: VideoSolution;
 
   isSolutionEnabled: boolean;
   solution: string;
@@ -66,22 +66,22 @@ export interface Option {
 }
 
 export interface QuestionStatusProps {
-  status: QuestionStatus
-  time: string
+  status: QuestionStatus;
+  time: string;
 }
 
 export const questionStatusMap: Record<QuestionStatus, any> = {
   [QuestionStatus.CORRECT]: {
     text: "Correct",
-    colorClassName: "text-[#1B7938]"
+    colorClassName: "text-[#1B7938]",
   },
   [QuestionStatus.INCORRECT]: {
     text: "Incorrect",
-    colorClassName: "text-[#BF2727]"
+    colorClassName: "text-[#BF2727]",
   },
   [QuestionStatus.SKIPPED]: {
     text: "Skipped",
-    colorClassName: "text-[#3D3D3D]"
+    colorClassName: "text-[#3D3D3D]",
   },
 };
 
@@ -91,7 +91,8 @@ export type ClickType =
   | "OPTION_CLICK"
   | "VIDEO_SOLUTION_CLICK"
   | "IMG_CLICK"
-  | "MARK_FOR_REVIEW_CLICK";
+  | "MARK_FOR_REVIEW_CLICK"
+  | "INVALID_TOKEN";
 
 export const ClickType = {
   BOOKMARK_CLICK: "BOOKMARK_CLICK" as ClickType,
@@ -100,6 +101,7 @@ export const ClickType = {
   VIDEO_SOLUTION_CLICK: "VIDEO_SOLUTION_CLICK" as ClickType,
   IMG_CLICK: "IMG_CLICK" as ClickType,
   MARK_FOR_REVIEW_CLICK: "MARK_FOR_REVIEW_CLICK" as ClickType,
+  INVALID_TOKEN: "INVALID_TOKEN" as ClickType,
 };
 
 export const sampleQuestion: Question = {
@@ -108,13 +110,13 @@ export const sampleQuestion: Question = {
   hideHeader: false,
   text: '<p style="text-align: left;">A 33-year-old male patient came in after suffering a fall from the bike. He was riding on the pillion and fell to his left and his elbow had an impact on the ground. He complains of tolerable pain with no associated swelling or reduction of ROM. You order an X-ray to rule out any chance of fracture. The X-ray turned out to be a normal study (as seen below). You ask the intern what the pointed structure is and she, being a studious person, answers:</p><p style="text-align: justify;"><img style="display: block; margin-left: auto; margin-right: auto;" title="d8db80ec-b9a1-496c-b69c-c8986d3fa042.jpg" src="https://static.pw.live/5eb393ee95fab7468a79d189/QBG/83d5a708-c0fd-465c-9b72-a72ad3380fd3.jpg" alt="" width="242" height="266" /></p>',
   videoQuestion: {
-    url: "https://www.youtube.com/watch?v=W6NZfCO5SIk",
-    type: "youtube",
-    parentId: "",
+    videoType: "IP_QUESTION",
+    type: "penpencilvdo",
+    url: "https://sec-stage.physicswallah.live/b4f82bda-c494-4103-8f43-3e05540fe9c3/master.mpd",
     secondaryParentId: "",
-    childId: "",
+    childId: "65f57cc3975624c9434e2035",
     secondaryChildId: "",
-    videoType: "",
+    parentId: "wwi1hpsif51yu5ucichlmd65t",
   },
   options: [
     {
@@ -123,7 +125,7 @@ export const sampleQuestion: Question = {
       text: "<p>NTproBNP</p>",
       subText: "25% Students marked this option",
       showSubText: false,
-      status: OptionStatus.UNMARKED,
+      status: "UNMARKED",
       disabled: false,
     },
     {
@@ -132,7 +134,7 @@ export const sampleQuestion: Question = {
       text: "<p>Myoglobin</p>",
       subText: "15% Students marked this option",
       showSubText: false,
-      status: OptionStatus.UNMARKED,
+      status: "UNMARKED",
       disabled: false,
     },
     {
@@ -141,7 +143,7 @@ export const sampleQuestion: Question = {
       text: '<p>NTproBNP<img title="Screenshot 2023-08-14 at 2.31.40 PM.png" src="https://d2bps9p1kiy4ka.cloudfront.net/5b09189f7285894d9130ccd0/2pgu1cn3qny7445sjte84rhos.png" alt="" width="1280" height="753" /></p>',
       subText: "30% Students marked this option",
       showSubText: false,
-      status: OptionStatus.UNMARKED,
+      status: "UNMARKED",
       disabled: false,
     },
     {
@@ -150,7 +152,7 @@ export const sampleQuestion: Question = {
       text: "<p>none</p>",
       subText: "30% Students marked this option",
       showSubText: false,
-      status: OptionStatus.UNMARKED,
+      status: "UNMARKED",
       disabled: false,
     },
   ],
@@ -166,7 +168,7 @@ export const sampleQuestion: Question = {
     type: "youtube",
   },
   isBookmarkEnabled: true,
-  isBookmark: false,
+  isBookmark: true,
   isThreeDotsEnabled: true,
   references: [
     "Gray's Anatomy the Anatomical Basis of Clinical Practice, 41st edition - 333",
